@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware, compose } from "redux";
 // import logger from 'redux-logger';
 import { persistStore } from "redux-persist";
+import ReduxThunk from 'redux-thunk';
+
 import rootReducer from './root-reducer';
 
-const middlewares = [];
+const middlewares = [ReduxThunk];
 
 const composeEnhancers =
   typeof window === 'object' &&
