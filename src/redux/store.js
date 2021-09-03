@@ -1,11 +1,16 @@
 import { createStore, applyMiddleware, compose } from "redux";
 // import logger from 'redux-logger';
 import { persistStore } from "redux-persist";
-import ReduxThunk from 'redux-thunk';
+
+import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './root-reducer';
 
-const middlewares = [ReduxThunk];
+import rootSaga from "./root-saga";
+
+const sagaMiddleware = createSagaMiddleware();
+
+const middlewares = [sagaMiddleware];
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -16,6 +21,8 @@ const enhancer = composeEnhancers(
 );
 
 export const store = createStore(rootReducer, enhancer);
+
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 // eslint-disable-next-line
