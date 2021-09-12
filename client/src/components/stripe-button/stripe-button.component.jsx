@@ -3,7 +3,6 @@ import StripeCheckout from 'react-stripe-checkout';
 import {connect} from "react-redux";
 import {removeAllItemsFromCart} from "../../redux/cart/cart.actions";
 import axios from "axios";
-import {response} from "express";
 
 const StripeCheckoutButton = ({price, removeAll}) => {
   const priceForStripe = price * 100;
@@ -17,7 +16,7 @@ const StripeCheckoutButton = ({price, removeAll}) => {
         amount: priceForStripe,
         token
       }
-    }).then(response => {
+    }).then((res) => {
       alert('Payment Successfully!');
     }).catch(error => {
       console.log('Payment error: ', JSON.parse(error));
