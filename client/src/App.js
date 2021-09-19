@@ -9,9 +9,9 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.component';
 
 import {selectCurrentUser} from "./redux/user/user.selectors";
-
-import './App.css';
 import {checkUserSession} from "./redux/user/user.actions";
+
+import { GlobalStyles } from './global.styles';
 
 const App = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -22,6 +22,7 @@ const App = () => {
 
   return (
     <div>
+      <GlobalStyles />
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
